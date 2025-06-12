@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 const Add = ({token}) => {
 
-
+  
   const [image1, setImage1] = useState(false)
   const [image2, setImage2] = useState(false)
   const [image3, setImage3] = useState(false)
@@ -44,7 +44,8 @@ const Add = ({token}) => {
       const response = await axios.post(backendUrl + "/api/product/add",formData,{headers:{token}})
       
       if (response.data.success) {
-        toast.success(response.data.message)
+        toast.success(response.data.message);
+     
         setName('')
         setDescription('')
         setImage1(false)
@@ -53,18 +54,15 @@ const Add = ({token}) => {
         setImage4(false)
         setPrice('')
       } else{
+        
         toast.error(response.data.message)
+        
       }
-      
-
-
+  
     } catch (error) {
       console.log(error);
-      toast.error(error.message)
-      
+      toast.error(error.message) 
     }
-
-
   }
 
   return (
@@ -165,7 +163,9 @@ const Add = ({token}) => {
       </div>
       <button type="submit" className='w-28 py-3 mt-4 bg-black text-white'>ADD</button>
     </form>
+    
   )
+  
 }
 
 export default Add

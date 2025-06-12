@@ -29,7 +29,7 @@ const placeOrder = async (req,res) => {
             items,
             amount,
             address,
-            PaymentMethod:"COD",
+            paymentMethod:"COD",
             payment:false,
             date: Date.now()       
         }
@@ -39,7 +39,7 @@ const placeOrder = async (req,res) => {
 
         await userModel.findByIdAndUpdate(userId,{cartData:{}})
 
-        response.json({success:true,message:"OrderPlaced"})
+        res.json({success:true,message:"OrderPlaced"})
 
     } catch (error) {
         console.log(error)
@@ -47,8 +47,8 @@ const placeOrder = async (req,res) => {
     }
 
 }
-const newOrder = new orderModel(orderData)
-await newOrder.save()
+//const newOrder = new orderModel(orderData)
+//await newOrder.save()
 
 
 const placeOrderStripe = async (req,res) => {
@@ -63,7 +63,7 @@ const placeOrderStripe = async (req,res) => {
         items,
         amount,
         address,
-        PaymentMethod:"Stripe",
+        paymentMethod:"Stripe",
         payment:false,
         date: Date.now()       
     }
@@ -149,7 +149,7 @@ try {
         items,
         amount,
         address,
-        PaymentMethod:"Razorpay",
+        paymentMethod:"Razorpay",
         payment:false,
         date: Date.now()       
     }

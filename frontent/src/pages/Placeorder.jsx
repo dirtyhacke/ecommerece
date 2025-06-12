@@ -7,6 +7,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 
+
 const placeorder = () => {
   const [method, setMethod] = useState('cod');
   const { navigate ,backendUrl ,token, cartItems , setCartItems , getCartAmount , delivery_fee ,products } = useContext(ShopContext);
@@ -19,7 +20,7 @@ const placeorder = () => {
     city: '',
     state: '',
     zipcode: '',
-    contry: '',
+    country: '',
     phone: ''
 
   })
@@ -44,7 +45,7 @@ const placeorder = () => {
       handler : async (response) => {
         console.log(response)
         try {
-          const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay', response,{headers:{token}})
+          const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay', response,{headers:{token}});
           if (data.success) {
             navigate('/orders')
             setCartItems({})

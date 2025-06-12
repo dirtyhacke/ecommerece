@@ -8,17 +8,18 @@ const BestSeller = () => {
     const [bestseller,setBestSeller]= useState([]);
     
     useEffect(()=>{
-
+        //console.log("Products from context:", products);
         const bestProduct=products.filter((item)=>(item.bestseller));
-        setBestSeller(bestProduct.slice(0,5))
+        setBestSeller(bestProduct.slice(0,5));
 
-    },[products])
+    },[products]);
+
   return (
     <div className='my-5'>
         <div className='text-center text-3xl py-8'>
             <Title text1={'BEST'} text2={'SELLERS'}/>
             <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-            Explore our best-selling products, loved by customers for their quality, value, and style! From trending gadgets to everyday essentials, these top picks are flying off the shelves. Don’t miss out—grab yours before they’re gone! 🛒🔥
+                Explore our best-selling products, loved by customers for their quality, value, and style! From trending gadgets to everyday essentials, these top picks are flying off the shelves. Don’t miss out—grab yours before they’re gone! 🛒🔥
             </p>
         </div>
 

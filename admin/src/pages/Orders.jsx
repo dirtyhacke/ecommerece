@@ -9,37 +9,53 @@ const Orders = ({ token }) => {
   const [orders, setOrders] = useState([])
 
   const fetchAllOrders = async () => {
-    if (!token) return;
+    if (!token) {
+      console.warn("Token not available, skipping fetchAllOrders");
+      return;
+    }
 
     try {
-      const response = await axios.post(backendUrl + '/api/order/list', {}, { headers: { token } })
+      console.log("Fetching orders with token:", token);
+      const response = await axios.post(backendUrl + '/api/order/list', {}, { headers: { token } });
+      console.log("Orders API response:", response.data);
       if (response.data.success) {
-        setOrders(response.data.orders.reverse())
+        setOrders(response.data.orders.reverse());
+        console.log("Orders set:", response.data.orders);
       } else {
-        toast.error(response.data.message)
+        toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error(error.message)
+      console.error("Error fetching orders:", error);
+      toast.error(error.message);
     }
   }
 
   const statusHandler = async (event, orderId) => {
+    const newStatus = event.target.value;
+    console.log(`Updating status for Order ID ${orderId} to "${newStatus}"`);
+
     try {
-      const response = await axios.post(backendUrl + '/api/order/status', { orderId, status: event.target.value }, { headers: { token } })
+      const response = await axios.post(
+        backendUrl + '/api/order/status',
+        { orderId, status: newStatus },
+        { headers: { token } }
+      );
+      console.log("Status update response:", response.data);
       if (response.data.success) {
-        await fetchAllOrders()
+        await fetchAllOrders();
       } else {
-        toast.error(response.data.message)
+        toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.message)
+      console.error("Error updating order status:", error);
+      toast.error(error.message);
     }
   }
 
   useEffect(() => {
+    console.log("useEffect triggered with token:", token);
     fetchAllOrders();
-  }, [token])
+  }, [token]);
 
   return (
     <div>
