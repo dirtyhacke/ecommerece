@@ -6,9 +6,9 @@ import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
 
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET)
-}
+const createToken = (userId) => {
+    return jwt.sign({ userId }, process.env.JWT_SECRET)
+};
 
 const loginUser = async (req, res) => {
     try {
@@ -84,22 +84,21 @@ const registerUser = async (req, res) => {
 // admin  log
 
 const adminLogin = async (req, res) => {
-
     try {
-        const { email, password } = req.body
+        const { email, password } = req.body;
+
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-            const token = jwt.sign(email+password, process.env.JWT_SECRET);
-            res.json({ success: true, token })
+            const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '2d' });
+            res.json({ success: true, token });
         } else {
-            res.json({ success: false, message: "invalid credentials" })
+            res.json({ success: false, message: "Invalid credentials" });
         }
+
     } catch (error) {
-
         console.log(error);
-        res.json({ success: false, message: error.message })
-
+        res.json({ success: false, message: error.message });
     }
+};
 
-}
 
 export { loginUser, registerUser, adminLogin }
