@@ -13,15 +13,15 @@ const collection = () => {
   const [sortType,setSortType]=useState('relavent')
   const toggleCategory=(e)=>{
     if (category.includes(e.target.value)) {
-      setCategory(prev=>prev.filter(item=>item !== e.target.value))
+      setCategory(prev=>prev.filter(item=>item!==e.target.value))
     }
     else{
-      setCategory(prev=> [...prev,e.target.value])
+      setCategory(prev=>[...prev,e.target.value])
     }
   }
   const toggleSubCategory =(e) =>{
     if (subCategory.includes(e.target.value)) {
-      setSubCategory(prev=>prev.filter(item=>item !== e.target.value))
+      setSubCategory(prev=>prev.filter(item=>item!==e.target.value))
     }
     else{
       setSubCategory(prev=> [...prev,e.target.value])
@@ -48,7 +48,7 @@ const collection = () => {
         setShowFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
         break;
         case 'high-low':
-          setShowFilterProducts(fpCopy.sort((a,b)=>(b.ptrice - a.price)));
+          setShowFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));    // fucking  error  destroy one week   (ptrice)
           break;
         default:
           applyFilter();
@@ -104,10 +104,10 @@ const collection = () => {
       </div>
       {/*right*/}
       <div className='flex-1'>
-        <div className='flext justify-between text-base sm:text-2xl mb-4'>
+        <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={'ALL'} text2={'COLLECTIONS'} />
           {/* product sort */}
-          <select onChange={(e=>setSortType(e.target.value))}className='border-2  border-gray-300 text-sm px-2'>
+          <select onChange={(e=>setSortType(e.target.value))}className='border-2 border-gray-300 text-sm px-2'>
             <option value="relavent">Sort by : relavent</option>
             <option value="low-high">sort by: Low to high</option>
             <option value="high-low">sort by: High to low</option>
