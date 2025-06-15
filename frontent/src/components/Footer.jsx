@@ -8,7 +8,7 @@ const Footer = () => {
             <div>
                 <img src={assets.logo}alt="" className='mb-5 w-32'/>
                 <p className='w-full md:w-2/3 text-gray-600'>
-                    kljfdjklfjklfjlkfdjklfdjklfdnvjklnjklfdvnfdvnljkdfnjklkndfjknjknvfdkdfnlkgglskn;lk;dsdkjkl;jfkjfdj
+                    At The Style Lab, we bring you the freshest trends in modern fashion — bold prints, cozy textures, and timeless essentials. Curated with love for those who dress to express.
                 </p>
             </div>
             <div>
