@@ -4,32 +4,35 @@ import { assets } from '../assets/assets';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 
-const collection = () => {
+const Collection = () => {
   const {products,search,showSearch}=useContext(ShopContext)
   const [showFilter,setShowFilter]=useState(false)
-  const [filterProducts,setShowFilterProducts] =useState([]);
+  const [filterProducts,setFilterProducts] =useState([]);
   const [category,setCategory]= useState([]);
   const [subCategory,setSubCategory]=useState([]);
-  const [sortType,setSortType]=useState('relavent')
+  const [sortType,setSortType]=useState('relavent');
+
   const toggleCategory=(e)=>{
     if (category.includes(e.target.value)) {
-      setCategory(prev=>prev.filter(item=>item!==e.target.value))
+      setCategory(prev=> prev.filter(item=> item !== e.target.value))
     }
     else{
       setCategory(prev=>[...prev,e.target.value])
     }
   }
+
   const toggleSubCategory =(e) =>{
-    if (subCategory.includes(e.target.value)) {
-      setSubCategory(prev=>prev.filter(item=>item!==e.target.value))
+    if (category.includes(e.target.value)) {
+      setSubCategory(prev=> prev.filter(item=> item !== e.target.value))
     }
     else{
-      setSubCategory(prev=> [...prev,e.target.value])
+      setSubCategory(prev=>[...prev,e.target.value])
     }
   }
 
   const applyFilter = () =>{
     let productsCopy = products.slice();
+    
     if (showSearch && search ) {
       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));  // two  day distroyed bug  the err is  forgott adding 'c' is 'C' 
     }
@@ -39,16 +42,16 @@ const collection = () => {
     if (subCategory.length > 0) {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory));
     }
-    setShowFilterProducts(productsCopy)
+    setFilterProducts(productsCopy)
   }
   const sortProduct =() =>{
     let fpCopy = filterProducts.slice();
     switch(sortType) {
       case 'low-high':
-        setShowFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
+        setFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
         break;
         case 'high-low':
-          setShowFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));    // fucking  error  destroy one week   (ptrice)
+          setFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));    // fucking  error  destroy one week   (ptrice)
           break;
         default:
           applyFilter();
@@ -58,14 +61,16 @@ const collection = () => {
   useEffect (()=>{
     applyFilter();
   },[category,subCategory,search,showSearch,products])
+
  useEffect(()=>{
     sortProduct();
  },[sortType])
+
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       {/* fliter options*/}
       <div className='min-w-60'>
-      <p onClick={()=>setShowFilter(!showFilter)}className='my-2 text-xl flex item-center cursor-pointer gap-2'>FILTERS </p>
+      <p onClick={()=>setShowFilter(!showFilter)}className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS </p>
       <img src={assets.dropdown_icon} alt="" className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''} `} />
       {/*category fil*/}
       <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
@@ -126,4 +131,4 @@ const collection = () => {
   )
 }
 
-export default collection
+export default Collection
