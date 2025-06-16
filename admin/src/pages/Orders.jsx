@@ -16,7 +16,12 @@ const Orders = ({ token }) => {
 
     try {
       console.log("Fetching orders with token:", token);
-      const response = await axios.post(backendUrl + '/api/order/list', {}, { headers: { token } });
+      const response = await axios.post(
+      backendUrl + '/api/order/list',
+      {},
+      { headers: { Authorization: `Bearer ${token}` } } // ✅ Fix here
+    );
+
       console.log("Orders API response:", response.data);
       if (response.data.success) {
         setOrders(response.data.orders.reverse());
@@ -35,11 +40,12 @@ const Orders = ({ token }) => {
     console.log(`Updating status for Order ID ${orderId} to "${newStatus}"`);
 
     try {
-      const response = await axios.post(
-        backendUrl + '/api/order/status',
-        { orderId, status: newStatus },
-        { headers: { token } }
-      );
+      await axios.post(
+    backendUrl + '/api/order/status',
+    { orderId, status: newStatus },
+    { headers: { Authorization: `Bearer ${token}` } } // ✅ Fix here too
+    );
+
       console.log("Status update response:", response.data);
       if (response.data.success) {
         await fetchAllOrders();

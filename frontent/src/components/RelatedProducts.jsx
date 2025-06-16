@@ -8,13 +8,21 @@ const RelatedProducts = ({ category, subCategory }) => {
   const [related, setRelated] = useState([]);
 
   useEffect(() => {
+  if (products.length > 0) {
+    let productsCopy = products.filter(item => category === item.category && subCategory === item.subCategory);
+    setRelated(productsCopy.slice(0, 5)); // ✅ Must set the state
+  }
+}, [products, category, subCategory]);
+
+
+ {/*} useEffect(() => {
     if (products.length > 0) {
       let productsCopy = products.slice();
       productsCopy = productsCopy.filter((item) => item.category === category);
       productsCopy = productsCopy.filter((item) => item.subCategory === subCategory);
-      setRelated(productsCopy.slice(0, 15)); // Only show first 5 related products
+      setRelated(productsCopy.slice(0, 5)); // Only show first 5 related products
     }
-  }, [products, category, subCategory]);
+  }, [products, category, subCategory]);  */}
 
   return (
     <div className='my-24'>
