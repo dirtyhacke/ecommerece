@@ -276,7 +276,7 @@ const Add = ({token}) => {
 
        <div>
         <p className='mb-2'>Product Sizes in bust size</p>
-        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 '>
           {/* bras women inner */}
 
            <div onClick={() => setSizes(prev => prev.includes("28A") ? prev.filter(item => item !== "30A") : [...prev, "28A"])}>
@@ -380,13 +380,13 @@ const Add = ({token}) => {
         </div>
       </div>
 
-      <div className='flex gap-2 mt-2'>
+      <div className='flex gap-2 mt-3'>
 
         <input onChange={()=> setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id='bestseller' />
         <label className='cursor-pointer' htmlFor="bestseller">Add to bestseller</label>
 
       </div>
-      <button type="submit" className='w-28 py-3 mt-4 bg-black text-white'>ADD</button>
+      <button type="submit" className='w-28 py-3 mt-4 bg-black text-white hover:bg-stone-700 rounded-2xl'>ADD</button>
     </form>
     
   )
