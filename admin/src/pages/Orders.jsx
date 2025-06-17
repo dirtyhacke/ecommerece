@@ -99,7 +99,7 @@ const Orders = ({ token }) => {
             </tbody>
           </table>
           <h3>Total: ${currency} ${order.amount}</h3>
-          <p><strong>Status:</strong> ${order.status}</p>
+        <!--<p><strong>Status:</strong> ${order.status}</p>-->
         </body>
       </html>
     `);
@@ -167,7 +167,7 @@ const Orders = ({ token }) => {
               </select>
 
               <button
-                className='px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm'
+                className='px-3 py-2 border text-black bg-stone-100 rounded hover:bg-stone-200 text-sm font-semibold'
                 onClick={() => handlePrint(order)}
               >
                 Print Bill
