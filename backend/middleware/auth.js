@@ -13,8 +13,13 @@ const authUser = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.body.userId = decoded.userId || decoded.id; // ✅ Support both
-    req.userRole = decoded.role || 'user';           // ✅ Pass role to next middleware
+
+    // ✅ Attach user info correctly
+    req.user = {
+      userId: decoded.userId || decoded.id,
+      role: decoded.role || 'user'
+    };
+
     next();
   } catch (error) {
     console.log("JWT Verification Error:", error.message);

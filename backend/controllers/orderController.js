@@ -225,16 +225,18 @@ const allOrders = async (req,res) => {
 }
 
 
-const userOrders = async (req, res) => {
-    try {
-        const userId = req.user.userId;
-        const orders = await orderModel.find({ userId });
-        res.json({ success: true, orders });
-    } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message });
-    }
+ const userOrders = async (req, res) => {
+  try {
+    const userId = req.user.userId; // ✅ Now this works
+    const orders = await orderModel.find({ userId });
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 };
+
+
 
 
 
