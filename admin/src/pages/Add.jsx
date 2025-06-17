@@ -204,6 +204,30 @@ const Add = ({token}) => {
         </div>
       </div>
 
+      <div>
+        <p className='mb-2'>Product Sizes for Blouses</p>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2'>
+          <div onClick={() => setSizes(prev => prev.includes("30") ? prev.filter(item => item !== "30") : [...prev, "30"])}>
+            <p className={`${sizes.includes("30") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>30</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("32") ? prev.filter(item => item !== "32") : [...prev, "32"])}>
+            <p className={`${sizes.includes("32") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>32</p>
+          </div>
+
+          <div onClick={() => setSizes(prev => prev.includes("34") ? prev.filter(item => item !== "34") : [...prev, "34"])}>
+            <p className={`${sizes.includes("34") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>34</p>
+          </div>
+
+          <div onClick={() => setSizes(prev => prev.includes("36") ? prev.filter(item => item !== "36") : [...prev, "36"])}>
+            <p className={`${sizes.includes("36") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>36</p>
+          </div>
+
+          <div onClick={() => setSizes(prev => prev.includes("38") ? prev.filter(item => item !== "38") : [...prev, "38"])}>
+            <p className={`${sizes.includes("38") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>38</p>
+          </div>
+        </div>
+      </div>
+
       <div className='flex gap-2 mt-2'>
 
         <input onChange={()=> setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id='bestseller' />
