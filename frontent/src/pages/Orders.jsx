@@ -94,10 +94,10 @@ const Orders = () => {
                 </div>
 
                 {/* Right: Track Order Button */}
-                <div className="hidden md:flex items-start">
+                <div className="hidden md:flex items-start border p-2 hover:bg-gray-400 transition duration-700 ease-in-out">
                   <button
                     onClick={() => setTrackVisibleIndex(trackVisibleIndex === index ? null : index)}
-                    className="text-blue-600 hover:underline text-sm"
+                    className="text-black  text-sm"
                   >
                     {trackVisibleIndex === index ? 'Hide Tracking' : 'Track Order'}
                   </button>
@@ -108,7 +108,7 @@ const Orders = () => {
               <div className="flex md:hidden justify-end pr-2">
                 <button
                   onClick={() => setTrackVisibleIndex(trackVisibleIndex === index ? null : index)}
-                  className="text-blue-600 hover:underline text-sm "
+                  className="text-blue-700 hover:underline text-sm "
                 >
                   {trackVisibleIndex === index ? 'Hide Tracking' : 'Track Order'}
                 </button>
