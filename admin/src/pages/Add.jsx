@@ -134,7 +134,7 @@ const Add = ({token}) => {
       </div>
       <div>
         <p className='mb-2'>Product Sizes</p>
-        <div className='flex gap-3'>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2'>
           <div onClick={() => setSizes(prev => prev.includes("S") ? prev.filter(item => item !== "S") : [...prev, "S"])}>
             <p className={`${sizes.includes("S") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>S</p>
           </div>
@@ -152,6 +152,51 @@ const Add = ({token}) => {
 
           <div onClick={() => setSizes(prev => prev.includes("XXL") ? prev.filter(item => item !== "XXL") : [...prev, "XXL"])}>
             <p className={`${sizes.includes("XXL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XXL</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("FreeSize") ? prev.filter(item => item !== "FreeSize") : [...prev, "FreeSize"])}>
+            <p className={`${sizes.includes("FreeSize") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>FreeSize</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p className='mb-2'>Product Sizes For kids</p>
+        <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2'>
+          <div onClick={() => setSizes(prev => prev.includes("0-3Months") ? prev.filter(item => item !== "0-3Months") : [...prev, "0-3Months"])}>
+            <p className={`${sizes.includes("0-3Months") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>0-3Months</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("9-12Monts") ? prev.filter(item => item !== "9-12Monts") : [...prev, "9-12Monts"])}>
+            <p className={`${sizes.includes("9-12Monts") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>9-12Monts</p>
+          </div>
+
+          <div onClick={() => setSizes(prev => prev.includes("6-12Months") ? prev.filter(item => item !== "6-12Months") : [...prev, "6-12Months"])}>
+            <p className={`${sizes.includes("6-12Months") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>6-12Months</p>
+          </div>
+
+          <div onClick={() => setSizes(prev => prev.includes("12-18Months") ? prev.filter(item => item !== "12-18Months") : [...prev, "12-18Months"])}>
+            <p className={`${sizes.includes("12-18Months") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>12-18Months</p>
+          </div>
+
+          <div onClick={() => setSizes(prev => prev.includes("18-24Months") ? prev.filter(item => item !== "18-24Months") : [...prev, "18-24Months"])}>
+            <p className={`${sizes.includes("18-24Months") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>18-24Months</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("0-1 Year") ? prev.filter(item => item !== "0-1 Year") : [...prev, "0-1 Year"])}>
+            <p className={`${sizes.includes("0-1 Year") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>0-1 Year</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("1-2 Years") ? prev.filter(item => item !== "1-2 Years") : [...prev, "1-2 Years"])}>
+            <p className={`${sizes.includes("1-2 Years") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>1-2 Years</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("2-2 Years") ? prev.filter(item => item !== "2-2 Years") : [...prev, "2-2 Years"])}>
+            <p className={`${sizes.includes("2-2 Years") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>2-2 Years</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("2-3 Years") ? prev.filter(item => item !== "2-3 Years") : [...prev, "2-3 Years"])}>
+            <p className={`${sizes.includes("2-3 Years") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>2-3 Years</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("") ? prev.filter(item => item !== "3-4 Years") : [...prev, "3-4 Years"])}>
+            <p className={`${sizes.includes("3-4 Years") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>3-4 Years</p>
+          </div>
+          <div onClick={() => setSizes(prev => prev.includes("4-5 Years") ? prev.filter(item => item !== "4-5 Years") : [...prev, "4-5 Years"])}>
+            <p className={`${sizes.includes("4-5 Years") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>4-5 Years</p>
           </div>
           <div onClick={() => setSizes(prev => prev.includes("FreeSize") ? prev.filter(item => item !== "FreeSize") : [...prev, "FreeSize"])}>
             <p className={`${sizes.includes("FreeSize") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>FreeSize</p>
