@@ -127,6 +127,7 @@ const Add = ({token}) => {
             <option value="EthnicWear">EthnicWear</option>
             <option value="WomensInner">WomensInner</option>
             <option value="MensInner">MensInner</option>
+            <option value="WesternWear">WesternWear</option>
           </select>
         </div>
         <div>
@@ -323,8 +324,8 @@ const Add = ({token}) => {
             <p className={`${sizes.includes("80cm") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>80cm</p>
           </div>
 
-          <div onClick={() => setSizes(prev => prev.includes("80cm") ? prev.filter(item => item !== "80cm") : [...prev, "80cm"])}>
-            <p className={`${sizes.includes("80cm") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>80cm</p>
+          <div onClick={() => setSizes(prev => prev.includes("100cm") ? prev.filter(item => item !== "100cm") : [...prev, "100cm"])}>
+            <p className={`${sizes.includes("100cm") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>100cm</p>
           </div>
 
           <div onClick={() => setSizes(prev => prev.includes("85cm") ? prev.filter(item => item !== "85cm") : [...prev, "85cm"])}>
