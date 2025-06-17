@@ -5,7 +5,7 @@ import { assets } from '../assets/assets';
 import CartTotal from '../components/CartTotal'; // Adjust the path if needed
 
 
-const cart = () => {
+const cart =() => {
 
 
   const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
