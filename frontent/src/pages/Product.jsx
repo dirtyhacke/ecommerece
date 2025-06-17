@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
-
+import { toast } from 'react-toastify';
 
 const Product = () => {
   const { productId } = useParams();
@@ -85,6 +85,7 @@ const Product = () => {
             onClick={() => {
               if (!size) return alert('Please select a size!');
               addToCart(productData._id, size);
+              toast.success('Item added to cart!');
             }}
             className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
           >
