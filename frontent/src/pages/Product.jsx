@@ -4,12 +4,14 @@ import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
 
+
 const Product = () => {
   const { productId } = useParams();
   const { products, currency, addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(null);
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
+  //const {navigate} = useContext(ShopContext);
 
   useEffect(() => {
     const item = products.find(p => p._id === productId);
@@ -88,6 +90,9 @@ const Product = () => {
           >
             ADD TO CART
           </button>
+          
+           {/*<button onClick={() => navigate('/placeorder')} className='bg-black text-white text-sm my-8 px-10 py-3  '>BUY NOW</button>*/}
+          
 
           <hr className="mt-8 sm:w-4/5" />
           <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
