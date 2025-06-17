@@ -66,7 +66,7 @@ const Product = () => {
 
           <div className="flex flex-col gap-5 my-8">
             <p>Select Size</p>
-            <div className="flex gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 gap-2">
               {productData.sizes.map((item, index) => (
                 <button
                   key={index}
