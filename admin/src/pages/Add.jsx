@@ -356,7 +356,7 @@ const Add = ({token}) => {
             <p className={`${sizes.includes("40C") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>38C</p>
           </div>
 
-          <div onClick={() => setSizes(prev => prev.includes("48A") ? prev.filter(item => item !== "48A") : [...prev, "48A"])}>
+          <div  onClick={() => setSizes(prev => prev.includes("48A") ? prev.filter(item => item !== "48A") : [...prev, "48A"])}>
             <p className={`${sizes.includes("48A") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>48A</p>
           </div>
             <div onClick={() => setSizes(prev => prev.includes("42A") ? prev.filter(item => item !== "42A") : [...prev, "42A"])}>
