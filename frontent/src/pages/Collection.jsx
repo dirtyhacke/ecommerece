@@ -87,12 +87,20 @@ const Collection = () => {
           <p className='flex gap-2'>
             <input type="checkbox" className='w-3' value={'Kids'}onChange={toggleCategory}/>Kids
           </p>
+
+           <p className='flex gap-2'>
+            <input type="checkbox" className='w-3' value={'Others'}onChange={toggleCategory}/>Others
+          </p>
         </div>
       </div>
       {/* sub cat*/}
       <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
         <p className='mb-3 text-sm font-medium'>TYPE</p>
         <div className='flex  flex-col gap-2 text-sm font-light text-gray-700'>
+
+          <p className='flex gap-2'>
+            <input type="checkbox" className='w-3' value={'Others'}onChange={toggleSubCategory}/>Others
+          </p>
           <p className='flex gap-2'>
             <input type="checkbox" className='w-3' value={'Topwear'}onChange={toggleSubCategory}/>Topwear
           </p>
