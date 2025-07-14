@@ -8,7 +8,7 @@ const BestSeller = () => {
   useEffect(() => {
     console.log("Products from context:", products);
     const bestProduct = products.filter((item) => (item.bestSeller));
-    setBestSeller(bestProduct.slice(0, 5));
+    setBestSeller(bestProduct.slice(0, 15));
 
   }, [products]);
   return (

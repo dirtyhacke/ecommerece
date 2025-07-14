@@ -15,10 +15,10 @@ const Add = ({token}) => {
   const [subcategory, setSubCategory] = useState("Topwear");
   const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
-  const onSubmitHandier = async (e) => {
-    e.preventDefault();
+  const onSubmitHandier = async (event) => {
+    event.preventDefault();
     try {  
-      const formData = new FormData()
+      const formData = new FormData();
       formData.append("name",name)
       formData.append("description",description)
       formData.append("price",price)

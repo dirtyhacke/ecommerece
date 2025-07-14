@@ -10,7 +10,7 @@ const RelatedProducts = ({ category, subCategory }) => {
   useEffect(() => {
   if (products.length > 0) {
     let productsCopy = products.filter(item => category === item.category && subCategory === item.subCategory);
-    setRelated(productsCopy.slice(0, 10000)); // ✅ Must set the state
+    setRelated(productsCopy.slice(0, 10000)); 
   }
 }, [products, category, subCategory]);
 
