@@ -1,12 +1,12 @@
-import mongoos  from "mongoose";
+import mongoose from "mongoose";
 
 const  connectDB = async () => {
 
-    mongoos.connection.on('connected',()=>{
+    mongoose.connection.on('connected',()=>{
         console.log("db connected");
         
     })
-    await mongoos.connect(`${process.env.MONGODB_URI}/ecommerce`)
+    await mongoose.connect(`${process.env.MONGODB_URI}/ecommerce`)
 
 
 }
