@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Anton&family=Bebas+Neue&family=Bitcount+Grid+Double:wght@100..900&family=Exile&family=Meie+Script&family=Monoton&family=Outfit:wght@100..900&family=Prata&family=Rubik+Vinyl&family=Share+Tech&family=WDXL+Lubrifont+TC&display=swap');
 a.active hr{
