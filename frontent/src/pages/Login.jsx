@@ -3,81 +3,88 @@ import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const login = () => {
+const Login = () => {
 
-  const [currentState, setCurrentState] = useState('Login'); 
+  const [currentState, setCurrentState] = useState('Login');
 
-  const {token,setToken,navigate,backendUrl}= useContext(ShopContext);
+  const { token , setToken, navigate, backendUrl } = useContext(ShopContext)
 
-  const [name,setName] = useState('')
-  const [password,setPassword] = useState('')
-  const [email,setEmail] = useState('')
+      const [name,setName] = useState('')
+      const [password,setPassword] = useState('')
+      const [email,setEmail] = useState('')
 
+  const onSubmintHandler = async (event) => {
 
-    const onSubmitHandiler = async (event) => {
-      event.preventDefault();
-      try {
+    event.preventDefault();
+
+    try {
+      
+      if (currentState === 'Sign Up') {
         
-        if (currentState === 'Sign up') {
-          
-          const response = await axios.post(backendUrl + '/api/user/register' ,{name,email,password})
-          if (response.data.success) {
-            setToken(response.data.token)
-            localStorage.setItem('token',response.data.token)
-          } else {
-            toast.error(response.data.message)
-          }
-          
-
-
+        const response = await axios.post(backendUrl + '/api/user/register',{name,email,password})
+        if (response.data.success) {
+          setToken(response.data.token)
+          localStorage.setItem('token',response.data.token)
         } else {
-
-          const response = await axios.post(backendUrl + '/api/user/login', {email,password})
-          if (response.data.success) {
-            setToken(response.data.token)
-            localStorage.setItem('token',response.data.token)
-          } else {
-            toast.error(response.data.message)
-          }
-
+          toast.error(response.data.message)
         }
+      } else {
 
-      } catch (error) {
-        console.log(error)
-        toast.error(error.message)
+        const response = await axios.post(backendUrl + '/api/user/login' , {email,password})
+
+        if(response.data.success){
+          setToken(response.data.token)
+          localStorage.setItem('token',response.data.token)
+        } else {
+          toast.error(response.data.message)
+        }
         
+
       }
+
+
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+      
     }
 
+  }
 
-    useEffect(()=>{
+  useEffect(()=>{
+    if (token) {
+      navigate('/')
+    }
+  },[token])
 
-      if (token) {
-
-        navigate('/')
-        
-      }
-    },[token])
   return (
-    <form  onSubmit={onSubmitHandiler}  className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
-      <div  className='inline-flex items-center gap-2 mb-2 mt-10'>
-        <p className='prata-regular text-3xl' >{currentState}</p>
-        <hr  className='border-none h-[1.5px] w-8 bg-gray-800' />
+    <form onSubmit={onSubmintHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800 '>
+
+      <div className='inline-flex items-center gap-2 mb-2 mt-10'>
+          <p className='prata-regular text-3xl'>{currentState}</p>
+          <hr className='border-none h-[1.5px] w-8 bg-gray-800' />
       </div>
-      {currentState === 'Login' ? '' : <input onChange={(e)=>setName(e.target.value)}  value={name} type="text" className='w-full px-3 py-2 border border-gray-800' placeholder='Name'required/>}
-      <input  onChange={(e)=>setEmail(e.target.value)}  value={email} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='@gmail.com' required/>
-      <input  onChange={(e)=>setPassword(e.target.value)}  value={password} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='Password' required/>
+
+      {currentState === 'Login' ? '' : <input  onChange={(e)=>setName(e.target.value)}  value={name} type="text" className='w-full px-3 py-2 border border-gray-800' placeholder='NAME' required/>}
+
+      <input onChange={(e)=>setEmail(e.target.value)}  value={email} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='@GMAIL.COM'required/>
+
+      <input onChange={(e)=>setPassword(e.target.value)}  value={password} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='PASSWORD' required/>
+
       <div className='w-full flex justify-between text-sm mt-[-8px]'>
-        <p className='cursor-pointer'>Forgott password</p>
-        {
-          currentState === 'Login'
-          ? <p onClick={()=>setCurrentState('Sign up')}  className='cursor-pointer'>Create Account</p>
-          : <p onClick={()=> setCurrentState('Login')} className='cursor-pointer'>Login Here</p>
-        }
+          <p className='cursor-pointer'>FORGOT YOUR PASSWORD ?</p>
+
+          {
+            currentState === 'Login'
+            ?
+            <p onClick={()=>setCurrentState('Sign Up')} className='cursor-pointer'>CREATE ACCOUNT</p>
+            :
+            <p onClick={()=>setCurrentState('Login')} className='cursor-pointer'>LOGIN HERE</p>
+          }
       </div>
-      <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === 'Login' ? 'Sign In' : 'Sign up'}</button>
+            <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === 'Login' ? 'Sign In' : 'Sign Up'}</button>
     </form>
   )
 }
 
-export default login
+export default Login

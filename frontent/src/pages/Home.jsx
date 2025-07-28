@@ -5,16 +5,16 @@ import BestSeller from '../components/BestSeller'
 import OurPolicy from '../components/OurPolicy'
 import NewsletterBox from '../components/NewsletterBox'
 
-const home = () => {
+const Home = () => {
   return (
     <div>
       <Hero />
-      <LatestCollection />
+      <LatestCollection/>
       <BestSeller />
       <OurPolicy />
-      <NewsletterBox/>
+      <NewsletterBox />
     </div>
   )
 }
 
-export default home
+export default Home
