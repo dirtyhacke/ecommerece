@@ -1,46 +1,34 @@
-import express from 'express'
-
+import express from 'express';
 import {
-    placeOrder,
-    placeOrderStripe,
-    placeOrderRazorpay,
-    allOrders,
-    userOrders,
-    updateStatus,
-    verifyStripe,
-    verifyRazorpay
-} from '../controller/orderController.js'
+  placeOrder,
+  placeOrderStripe,
+  placeOrderRazorpay,
+  allOrders,
+  userOrders,
+  updateStatus,
+  verifyStripe,
+  verifyRazorpay
+} from '../controllers/orderController.js';
 
-import adminAuth from '../middleware/adminAuth.js'
+import adminAuth from '../middleware/adminAuth.js';
+import authUser from '../middleware/auth.js';
 
-import authUser from '../middleware/auth.js'
+const orderRouter = express.Router();
 
-const orderRouter = express.Router()
+// 🔐 Admin-only routes
+orderRouter.post('/list', adminAuth, allOrders);
+orderRouter.post('/status', adminAuth, updateStatus);
 
-//Admin Featues
+// 🛒 User order placement
+orderRouter.post('/place', authUser, placeOrder);                 // COD
+orderRouter.post('/stripe', authUser, placeOrderStripe);          // Stripe
+orderRouter.post('/razorpay', authUser, placeOrderRazorpay);      // Razorpay
 
-orderRouter.post('/list',adminAuth,allOrders)
+// 👤 User-specific data
+orderRouter.post('/userorders', authUser, userOrders);
 
-orderRouter.post('/status',adminAuth,updateStatus)
+// ✅ Payment verification
+orderRouter.post('/verifyStripe', authUser, verifyStripe);
+orderRouter.post('/verifyRazorpay', authUser, verifyRazorpay);
 
-//payment featurs
-
-orderRouter.post('/place',authUser,placeOrder)
-
-orderRouter.post('/stripe',authUser,placeOrderStripe)
-
-orderRouter.post('/razorpay',authUser,placeOrderRazorpay)
-
-
-//use feature
-
-orderRouter.post('/userorders',authUser,userOrders)
-
-//verfy payment 
-
-orderRouter.post('/verifyStripe',authUser,verifyStripe)
-
-orderRouter.post('/verifyRazorpay',authUser,verifyRazorpay)
-
-
-export default orderRouter
+export default orderRouter;

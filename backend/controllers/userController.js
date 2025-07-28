@@ -1,43 +1,29 @@
 
+//rout  user login
+
 import userModel from "../models/userModel.js";
-
 import validator from "validator";
+import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken'
 
-import bcrypt from "bcrypt"
+const createToken = (userId) => {
+    return jwt.sign({ userId }, process.env.JWT_SECRET)
+};
 
-import jwt from "jsonwebtoken"
-
-
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET)
-}
-
-//route for usr login
 const loginUser = async (req, res) => {
-
     try {
-
         const { email, password } = req.body;
-
         const user = await userModel.findOne({ email });
-
         if (!user) {
-
-            return res.json({ success: false, message: "User dosen't " })
+            return res.json({ success: false, message: "Please check your user name!" })
         }
-
-        const isMatch = await bcrypt.compare(password, user.password)
-
+        const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
-
             const token = createToken(user._id)
-
             res.json({ success: true, token })
-
         } else {
-            res.json({ success: false, message: 'Invalid credentials' })
+            res.json({ success: false, message: 'Invalid Password!!' })
         }
-
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message })
@@ -45,7 +31,8 @@ const loginUser = async (req, res) => {
 
 }
 
-//route fro usr registration
+
+//route user reg
 
 const registerUser = async (req, res) => {
 
@@ -53,28 +40,24 @@ const registerUser = async (req, res) => {
 
         const { name, email, password } = req.body;
 
-        // checking already exist or not
+        // checking user already exist 
 
         const exists = await userModel.findOne({ email });
 
         if (exists) {
-            return res.json({ success: false, message: "User already exists" })
+            return res.json({ success: false, message: "user already exists" })
         }
-
-        // validating email fromat & strong password
-
+        //validating email format and strong pass
         if (!validator.isEmail(email)) {
             return res.json({ success: false, message: "Please enter a valid email" })
         }
 
         if (password.length < 8) {
-            return res.json({ success: false, message: "Please enter a Strong password" })
+            return res.json({ success: false, message: "Please enter a strong password" })
         }
 
-        // hashing user password
-
+        // hashing pass
         const salt = await bcrypt.genSalt(10)
-
         const hashedPassword = await bcrypt.hash(password, salt)
 
         const newUser = new userModel({
@@ -85,52 +68,37 @@ const registerUser = async (req, res) => {
 
         const user = await newUser.save()
 
-        //token
-
         const token = createToken(user._id)
-
 
         res.json({ success: true, token })
 
+
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message })
     }
+
 }
 
-// route for admin login
 
+// admin  log
 
 const adminLogin = async (req, res) => {
-
-
     try {
-
-
-        const { email, password } = req.body
+        const { email, password } = req.body;
 
         if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-
-            const token = jwt.sign(email + password, process.env.JWT_SECRET);
-
-            res.json({ success: true, token })
-
+            const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '2d' });
+            res.json({ success: true, token });
         } else {
-
-            res.json({ success: false, message: "INVALID CREDENTIALS" })
-
+            res.json({ success: false, message: "Invalid credentials" });
         }
 
-
     } catch (error) {
-
         console.log(error);
-        res.json({ success: false, message: error.message })
-
+        res.json({ success: false, message: error.message });
     }
-
-
-}
+};
 
 
 export { loginUser, registerUser, adminLogin }
