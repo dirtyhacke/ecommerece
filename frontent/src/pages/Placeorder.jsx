@@ -6,7 +6,7 @@ import { ShopContext } from '../context/ShopContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const PlaceOrder = () => {
+const Placeorder = () => {
 
 
     const [methode, setMethode] = useState('cod');
@@ -212,4 +212,4 @@ const PlaceOrder = () => {
     )
 }
 
-export default PlaceOrder
+export default Placeorder
