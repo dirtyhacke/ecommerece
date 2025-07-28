@@ -1,26 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-a.active  hr{
-    display:block;
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&family=Anton&family=Bebas+Neue&family=Bitcount+Grid+Double:wght@100..900&family=Exile&family=Meie+Script&family=Monoton&family=Outfit:wght@100..900&family=Prata&family=Rubik+Vinyl&family=Share+Tech&family=WDXL+Lubrifont+TC&display=swap');
+a.active hr{
+    display: block;
 }
+
 *{
-
-    font-family: Outfit;
+    font-family: Oswald;
 }
+
 .prata-regular {
-    font-family: "Prata", serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+@media(max-width:640px){
+  a.active{
+    background-color: black;
+    color: azure;
   }
-  ::-webkit-scrollbar{
-    display: none;
-  }
-  @media (max-width:640px){
-    a.active{
-        background-color: black;
-        color: white;
-    }
-  }
+}
